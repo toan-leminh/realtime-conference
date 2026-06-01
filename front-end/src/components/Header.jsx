@@ -1,15 +1,24 @@
 import { Link } from "react-router-dom";
+import { callApi } from "../services/api";
 
 function Header() {
     // Logout
     const handleLogout = () => {
-        localStorage.removeItem("username");
-        window.location.href = "/";
+        try{
+            callApi('/logout');
+
+            localStorage.removeItem("username");
+            localStorage.removeItem("avatar");
+            
+            window.location.href = "/";
+        }catch(ex){
+            console.log("Error occured: ", ex);
+        }
     };
 
     return (
         <header>
-            <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+            <div className="d-flex flex-column flex-md-row align-items-center pb-3 pt-3 mb-4 border-bottom">
                 <Link to="/" className="d-flex align-items-center text-dark text-decoration-none">
                     <span className="fs-4">Realtime Conference</span>
                 </Link>
@@ -27,7 +36,15 @@ function Header() {
                 </nav>
 
                 {localStorage.getItem("username") && (
-                    <div className="d-inline-flex.ms-md-3">
+                    <div className="d-inline-flex ms-md-3">
+                        {localStorage.getItem("avatar") && (
+                            <img
+                                src={localStorage.getItem("avatar")}
+                                alt="avatar"
+                                className="rounded-circle d-flex align-self-start shadow-1-strong ms-3"
+                                width="40"
+                            />
+                        )}
                         <span className="me-3 py-2 text-dark text-decoration-none">Hello, {localStorage.getItem("username")}!</span>
                         <Link className="me-3 py-2 text-dark text-decoration-none" onClick={handleLogout}>
                             Logout

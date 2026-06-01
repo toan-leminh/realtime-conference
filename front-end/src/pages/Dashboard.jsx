@@ -43,11 +43,6 @@ function Dashboard() {
         fetchSessions();
     }, []);
 
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-
-    // Click "Add to Schedule" button event 
     const handleAddSchedule = async (session) => {
         // Call API
         try {
@@ -75,13 +70,14 @@ function Dashboard() {
             console.error(err);
         }
     };
+
     return (
         <PageLayout
-            title={`Welcome, ${username}!`}
-            description="Dashboard screen for the conference management system."
+            title="Dashboard"
+            description="All available conference sessions."
             action={<></>}
         >
-            {/* Additional dashboard content can go here */
+            {
                 <Container>
                     <Row className="g-4">
                         {sessions.map((session, index) => (

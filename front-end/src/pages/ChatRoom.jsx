@@ -80,8 +80,8 @@ function ChatRoom() {
     
     return (
         <PageLayout
-            title={`Chat Room, ${username}!`}
-            description=""
+            title={`Chat Room:  ${id}!`}
+            description="Live chat room"
             action={
                 <Button variant="danger" className="ms-auto m-2" onClick={() => navigate("/dashboard")}>
                     Leave Meeting

@@ -23,7 +23,9 @@ function Login() {
         try {
             const response = await login(username, password);
             // Store the username in localStorage
-            localStorage.setItem("username", username);
+            console.log(response);
+            localStorage.setItem("username", response.data.username);
+            localStorage.setItem("avatar", response.data.avatar);
             
             // Navigate to the dashboard
             navigate("/dashboard");
@@ -72,7 +74,7 @@ function Login() {
                     <Button variant="primary" type="submit" className="w-100 mt-3">
                         Login
                     </Button>
-                    <Link to="/auth/linkedin" className="btn btn-secondary w-100 mt-2">
+                    <Link to="http://localhost:3000/api/auth/linkedin" className="btn btn-secondary w-100 mt-2">
                         Login with LinkedIn
                     </Link>
                 </Form>

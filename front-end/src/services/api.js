@@ -1,68 +1,81 @@
 const API_BASE_URL = "http://localhost:3000/api";
 
-// Login by user/password
-export const login = async (username, password) => {
-    const response = await fetch(`${API_BASE_URL}/login`, {
+const redirectToLogin = () => {
+    if (typeof window === "undefined") return;
+
+    if (window.location.pathname !== "/") {
+        window.location.replace("/");
+    }
+};
+
+export const callApi = async (path, options = {}) => {
+    const {
+        headers: customHeaders = {},
+        body,
+        method = "GET",
+        ...restOptions
+    } = options;
+
+    const headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        ...customHeaders
+    };
+
+    const requestOptions = {
         credentials: "include",
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ username, password })
-    });
-    
+        method,
+        headers,
+        ...restOptions
+    };
+
+    requestOptions.body = JSON.stringify(body);
+
+    const response = await fetch(`${API_BASE_URL}${path}`, requestOptions);
+
+    if (response.status === 401) {
+        redirectToLogin();
+        throw new Error("Unauthorized");
+    }
+
     if (!response.ok) {
-        throw new Error("Login failed");
+        const errorMessage = `Request failed with status ${response.status}`;
+        throw new Error(errorMessage);
     }
 
     return response.json();
 };
 
+// Login by user/password
+export const login = async (username, password) => {
+    return callApi("/login", {
+        method: "POST",
+        body: { username, password }
+    });
+};
+
 // Get all sessions
 export const getAllSessions = async () => {
-    const response = await fetch(`${API_BASE_URL}/sessions`
-    ,{
-        credentials: "include"
-    }
-    );
-    
-    if (!response.ok) {
-        throw new Error("Failed to fetch sessions");
-    }
-    
-    return  response.json();
-}
+    return callApi("/sessions");
+};
 
 // Add to my schedule
 export const addSchedule = async (sessionId) => {
-    await fetch(`${API_BASE_URL}/my-schedule`, {
-        credentials: "include",
+    return callApi("/my-schedule", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ sessionId })
+        body: { sessionId }
     });
-}
+};
+
 // Remove from my schedule
 export const removeSchedule = async (sessionId) => {
-    await fetch(`${API_BASE_URL}/my-schedule`, {
-        credentials: "include",
+    return callApi("/my-schedule", {
         method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ sessionId })
+        body: { sessionId }
     });
-}
+};
 
 // Get my schedule
 export const getMySchedule = async () => {
-    const response = await fetch(`${API_BASE_URL}/my-schedule`, {
-        credentials: "include"
-    });
-    if (!response.ok) {
-        throw new Error("Failed to fetch my schedule");
-    }
-    return response.json();
-}
+    return callApi("/my-schedule");
+};

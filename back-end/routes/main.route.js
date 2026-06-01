@@ -14,14 +14,13 @@ router.get(
 router.get(
     "/auth/linkedin/callback",
     passport.authenticate("linkedin", {
-        failureRedirect: "/login"
+        failureRedirect: "http://localhost:5173/"
     }),
     (req, res) => {
-        // login success
-        res.json({ 
-            error: null,
-            data: req.session?.passport?.user
-        });
+        const user = req.session?.passport?.user;
+        console.log("Login by LinkedIn success", user);
+
+        res.redirect("http://localhost:5173/dashboard");
     }
 );
 
@@ -33,9 +32,7 @@ router.post(
         // Handle login logic here
         res.json({ 
             error: null,
-            data: {
-                user: req.session?.passport?.user
-            },
+            data: req.session?.passport?.user,
         });
 });
 
@@ -46,10 +43,7 @@ router.get("/logout", (req, res) => {
             return res.status(500).json({ error: "Logout failed" });
         }
 
-        req.session.destroy(() => {
-            // Optional: This removes the cookie from the browser
-            res.clearCookie('connect.sid'); 
-        });
+        req.session.destroy(() => {});
 
         res.json({ error: null, data: "Logged out successfully" });
     });

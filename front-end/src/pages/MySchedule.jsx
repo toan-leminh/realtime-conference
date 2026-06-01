@@ -62,8 +62,8 @@ function MySchedule() {
 
     return (
         <PageLayout
-            title={`Welcome, ${username}!`}
-            description="Dashboard screen for the conference management system."
+            title="My schedule"
+            description="Personal schedule"
             action={<></>}
         >
             {/* Additional dashboard content can go here */

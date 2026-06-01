@@ -6,8 +6,8 @@ import { Strategy as LocalStrategy } from "passport-local";
 import users from "../data/users.json" with { type: "json" };
 import { Strategy as LinkedInStrategy } from "passport-linkedin-oauth2";
 
-// Config passport with Local Strategy (username/password)
 function configurePassport() {
+    // Config passport with Local Strategy (username/password)
     passport.use(new LocalStrategy({ usernameField: 'username' }, async (username, password, done) => {
         try {
             const user = users.find(u => u.username == username && u.password == password);
@@ -22,24 +22,25 @@ function configurePassport() {
             return done(e); 
         }
     }));
-
+    // Config passport with LinkedIn 
     passport.use(
         new LinkedInStrategy(
             {
                 clientID: process.env.LINKEDIN_CLIENT_ID,
                 clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
-                callbackURL: "http://localhost:3000/auth/linkedin/callback",
-                scope: ["r_liteprofile", "r_emailaddress"]
+                callbackURL: "http://localhost:3000/api/auth/linkedin/callback",
+                scope: ["openid", "profile"],
+                state: true
             },
             (accessToken, refreshToken, profile, done) => {
-
+            
+                console.log(profile);
                 // LinkedIn user data
                 const user = {
                     id: profile.id,
                     username: profile.displayName,
-                    name: profile.displayName,
-                    avatar:
-                        profile.photos?.[0]?.value || null,
+                    //name: profile.displayName,
+                    avatar: profile.picture
                 };
 
                 return done(null, user);
@@ -57,7 +58,6 @@ function configurePassport() {
     });
     
     passport.deserializeUser((user, done) => {
-        //const user = users.find(u => u.id === id);
         done(null, user);
     });
 }
