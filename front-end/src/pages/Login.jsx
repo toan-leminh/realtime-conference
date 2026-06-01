@@ -23,7 +23,6 @@ function Login() {
         try {
             const response = await login(username, password);
             // Store the username in localStorage
-            console.log(response);
             localStorage.setItem("username", response.data.username);
             localStorage.setItem("avatar", response.data.avatar);
             

@@ -39,7 +39,6 @@ function configurePassport() {
                 const user = {
                     id: profile.id,
                     username: profile.displayName,
-                    //name: profile.displayName,
                     avatar: profile.picture
                 };
 

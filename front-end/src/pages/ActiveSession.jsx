@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import PageLayout from "../components/PageLayout";
 import { useEffect, useState } from "react";
@@ -16,14 +16,6 @@ import {
 function ActiveSession() {
     const [mySchedule, setMySchedule] = useState([]);
     const [rooms, setRooms] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const username = localStorage.getItem("username");
-    const navigate = useNavigate();
-
-    const handleViewSchedule = () => {
-        navigate("/my-schedule");
-    }
     
     // Connect socket 
     socket.connect();

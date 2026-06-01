@@ -16,14 +16,8 @@ import {
 function Dashboard() {
     const [mySchedule, setMySchedule] = useState([]);
     const [sessions, setSessions] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     const username = localStorage.getItem("username");
-    const navigate = useNavigate();
-
-    const handleViewSchedule = () => {
-        navigate("/my-schedule");
-    }
 
     const fetchSessions = async () => {
         try {
@@ -32,10 +26,7 @@ function Dashboard() {
             setSessions(res.data);
         } catch (err) {
             console.error(err);
-        } finally {
-            setLoading(false);
         }
-
     };
 
     // Fetch sessions data from API

@@ -8,8 +8,6 @@ import ActiveSession from './pages/ActiveSession';
 
 
 function App() {
-    const [count, setCount] = useState(0)
-
     return (
         <Routes>
             <Route path="/" element={<Login />} />

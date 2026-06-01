@@ -15,14 +15,6 @@ import {
 
 function MySchedule() {
     const [sessions, setSessions] = useState([]);
-    const [loading, setLoading] = useState(true);
-
-    const username = localStorage.getItem("username");
-    const navigate = useNavigate();
-
-    const handleViewSchedule = () => {
-        navigate("/my-schedule");
-    }
 
     const getSessions = async () => {
         try {
@@ -31,8 +23,6 @@ function MySchedule() {
 
         } catch (err) {
             console.error(err);
-        } finally {
-            setLoading(false);
         }
     };
         
@@ -41,10 +31,6 @@ function MySchedule() {
         getSessions();
         
     }, []);
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
 
     // Click "Add to Schedule" button event 
     const handleRemoveSchedule = async (session) => {
