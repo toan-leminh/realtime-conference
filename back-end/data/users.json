@@ -1,0 +1,26 @@
+[
+    {
+        "id": "user1",
+        "username": "Toan",
+        "password": "1234",
+        "avatar": "http://localhost:3000/images/avatar-1.png"
+    },
+    {
+        "id": "user2",
+        "username": "Jane",
+        "password": "1234",
+        "avatar": "http://localhost:3000/images/avatar-2.png"
+    },
+    {
+        "id": "user3",
+        "username": "John",
+        "password": "1234",
+        "avatar": "http://localhost:3000/images/avatar-3.png"
+    },
+    {
+        "id": "user4",
+        "username": "Alice",
+        "password": "1234",
+        "avatar": "http://localhost:3000/images/avatar-4.png"
+    }
+]

@@ -1,0 +1,47 @@
+[
+    {
+        "id": "session1",
+        "title": "Session 1",
+        "description": "This is the first session.",
+        "speaker": "Lecturer A",
+        "category": "Web Application Framework",
+        "fromTime" : "2024-07-01T10:00:00Z",
+        "toTime" : "2024-07-01T11:00:00Z"
+    },
+    {
+        "id": "session2",
+        "title": "Session 2",
+        "description": "This is the second session.",
+        "speaker": "Lecturer B",
+        "category": "Web Application Framework",
+        "fromTime" : "2024-07-01T11:30:00Z",
+        "toTime" : "2024-07-01T12:30:00Z"
+    },
+    {
+        "id": "session3",
+        "title": "Session 3",
+        "description": "This is the third session.",
+        "speaker": "Lecturer C",
+        "category": "Fundamental of Programming",
+        "fromTime" : "2024-07-01T13:00:00Z",
+        "toTime" : "2024-07-01T14:00:00Z"
+    },
+    {
+        "id": "session4",
+        "title": "Session 4",
+        "description": "This is the fourth session.",
+        "speaker": "Lecturer D",
+        "category": "Introduction to System Engineering",
+        "fromTime" : "2024-07-01T14:30:00Z",
+        "toTime" : "2024-07-01T15:30:00Z"
+    },
+    {
+        "id": "session5",
+        "title": "Session 5",
+        "description": "This is the fifth session.",
+        "speaker": "Lecturer E",
+        "category": "Web Application Framework",
+        "fromTime" : "2024-07-01T16:00:00Z",
+        "toTime" : "2024-07-01T17:00:00Z"
+    }
+]
