@@ -53,6 +53,13 @@ Install all dependencies
 ```
 $ npm install
 ```
+Create .env file and input LinkedIn credentials (for LinkedIn integration)
+( Obtain by creating an App in https://www.linkedin.com/developers )
+
+```
+LINKEDIN_CLIENT_ID=xxxxxxxx
+LINKEDIN_CLIENT_SECRET=xxxxxxxxx
+```
 
 Then run back-end project
 
