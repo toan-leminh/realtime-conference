@@ -98,7 +98,7 @@ function ChatRoom() {
                                 <div className="card-body overflow-auto ">
                                     <ul className="list-unstyled mb-0">
                                         {users.map((user) => (
-                                            <li key={user.id }className="p-2 border-bottom bg-body-tertiary">
+                                            <li key={user.id} className="p-2 border-bottom bg-body-tertiary">
                                                 <div className="d-flex flex-row">
                                                     <img
                                                         src={user.avatar}

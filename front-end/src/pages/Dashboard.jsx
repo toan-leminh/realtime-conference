@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import PageLayout from "../components/PageLayout";
 import { useEffect, useState } from "react";
 import SessionCard from "../components/SessionCard";
-import { getMySchedule, addSchedule, removeSchedule, getAllSessions } from "../services/api";
+import { getMySchedule, addSchedule, removeSchedule, getAllSessions, getProfile } from "../services/api";
 
 import {
     Container,
@@ -16,8 +16,17 @@ import {
 function Dashboard() {
     const [mySchedule, setMySchedule] = useState([]);
     const [sessions, setSessions] = useState([]);
+    
+    const fetchProfile = async () => {
+        try {
+            const {error, data} = await getProfile();
+            localStorage.setItem("username", data.username);
+            localStorage.setItem("avatar", data.avatar);
+        } catch (err) {
+            console.error(err);
+        }
 
-    const username = localStorage.getItem("username");
+    }
 
     const fetchSessions = async () => {
         try {
@@ -32,6 +41,7 @@ function Dashboard() {
     // Fetch sessions data from API
     useEffect(() => {
         fetchSessions();
+        fetchProfile();
     }, []);
 
     const handleAddSchedule = async (session) => {

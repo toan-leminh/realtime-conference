@@ -132,7 +132,7 @@ function registerSocket(io) {
 
                     // Broadcast list users
                     io.to(sessionId).emit("room-users", {
-                        participants: Object.values(session.participants)
+                        users: Object.values(session.participants)
                     });
                 }
             }

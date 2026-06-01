@@ -49,6 +49,21 @@ router.get("/logout", (req, res) => {
     });
 });
 
+// Get profile
+router.get("/profile",
+    (req, res) => {
+        const userId = req.session?.passport?.user?.id;
+        if (!userId) {
+            return res.status(401).json({ error: "Unauthorized" });
+        }
+        
+        // Handle login logic here
+        res.json({ 
+            error: null,
+            data: req.session?.passport?.user,
+        });
+});
+
 // Get all sessions 
 router.get("/sessions", (req, res) => {
     const userId = req.session?.passport?.user?.id;

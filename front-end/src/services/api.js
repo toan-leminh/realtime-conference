@@ -54,6 +54,11 @@ export const login = async (username, password) => {
     });
 };
 
+// Get user profile
+export const getProfile = async () => {
+    return callApi("/profile", {});
+};
+
 // Get all sessions
 export const getAllSessions = async () => {
     return callApi("/sessions");
